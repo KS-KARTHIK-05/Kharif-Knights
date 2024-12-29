@@ -20,7 +20,7 @@ We also plan to integrate AI models for advanced predictions and insights in the
 
 ### Hardware  
 - **Arduino Uno**: Acts as the transmitter, collecting sensor data.  
-- **ESP32**: Serves as the receiver and uploads the data to Firebase.  
+- **ESP32 Dev Kit v1**: Serves as the receiver and uploads the data to Firebase.  
 - **LoRa SX1278 Modules**: Handles wireless communication between the transmitter and receiver.  
 - **DHT11 Sensor**: Measures temperature and humidity.  
 - **Soil Moisture Sensor**: Reads soil moisture levels.  
@@ -44,7 +44,7 @@ The **Arduino Uno** is connected to the **DHT11 sensor** and **Soil Moisture Sen
 The Arduino processes the data and sends it to the **LoRa transmitter module**, which transmits the data wirelessly to the receiver.  
 
 ### 3. **Data Reception**  
-The **ESP32** is connected to the **LoRa receiver module**, which receives the transmitted data. The ESP32 processes this data for further actions.  
+The **ESP32 Dev Kit v1** is connected to the **LoRa receiver module**, which receives the transmitted data. The ESP32 processes this data for further actions.  
 
 ### 4. **Cloud Integration**  
 The ESP32 uses the **HTTPClient library** to send the received data to **Firebase RTDB**.  
@@ -88,15 +88,51 @@ A web interface (HTML, CSS, and JS) will visualize the Firebase data in real-tim
 
 ---
 
+## **Prerequisites for Setting up ESP32 Dev Kit v1**  
+
+1. **Install ESP32 Board Manager**:  
+   - Open Arduino IDE.  
+   - Go to `File > Preferences`.  
+   - Add the following URL to the "Additional Board Manager URLs" field:  
+     ```
+     https://dl.espressif.com/dl/package_esp32_index.json
+     ```  
+   - Go to `Tools > Board > Boards Manager`.  
+   - Search for "ESP32" and install it.  
+
+2. **Select the Correct Board**:  
+   - Go to `Tools > Board > ESP32 Arduino > ESP32 Dev Module`.  
+
+3. **Select the Correct Port**:  
+   - Connect the ESP32 to your computer via USB.  
+   - Go to `Tools > Port` and select the appropriate COM port.  
+
+---
+
+## **Libraries to Install**  
+
+1. **LoRa Library**  
+   - Go to `Sketch > Include Library > Manage Libraries`.  
+   - Search for "LoRa" by Sandeep Mistry and install it.  
+
+2. **DHT Sensor Library**  
+   - Search for "DHT sensor library" by Adafruit and install it.  
+
+3. **Firebase ESP32 Library**  
+   - Install the library from this [GitHub Repository](https://github.com/mobizt/Firebase-ESP-Client).  
+
+4. **HTTPClient Library**  
+   - Pre-installed in Arduino IDE for ESP32.  
+
+---
+
 ## **Code Files**  
 
 1. **Arduino_Transmitter.ino**  
-   This code runs on the Arduino Uno. It:  
    - Reads data from the DHT11 and Soil Moisture Sensor.  
    - Transmits the data via the LoRa module.  
 
 2. **ESP32_Receiver.ino**  
-   This code runs on the ESP32. It:  
    - Receives data from the LoRa module.  
    - Sends the data to Firebase RTDB using the HTTPClient library.  
 
@@ -126,3 +162,8 @@ A web interface (HTML, CSS, and JS) will visualize the Firebase data in real-tim
 
 ---
 
+## **Stay Tuned! 🚀**  
+
+This is just the beginning! Follow the repository for updates and the next big feature rollout. 😊  
+
+Feel free to contribute or share your feedback. Let's innovate together!  
